@@ -1,0 +1,4 @@
+{
+  "dbName": "test_01",
+  "connURL": "mongodb://127.0.0.1:27017"
+}

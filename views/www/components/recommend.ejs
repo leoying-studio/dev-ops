@@ -1,0 +1,27 @@
+<% if (data.recommend.length) { %>
+    <section class="home_banner_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5"></div>
+                <div class="col-lg-7">
+                    <div class="blog_text_slider owl-carousel">
+                        <% data.recommend.forEach(function(item){  %>
+                            <div class="item">
+                                <div class="blog_text">
+                                    <div class="cat">
+                                        <a class="cat_btn" href="/www/#">Gadgets</a>
+                                        <a href="/www/#"><i class="fa fa-calendar" aria-hidden="true"></i> <%= item.timeAgo  %></a>
+                                        <a href="/www/#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+                                    </div>
+                                    <a href="/www/#"><h4><%= item.name  %></h4></a>
+                                    <p><%= item.desc %></p>
+                                    <a class="blog_btn" href="/detail/<%= item._id%>">查看详情</a>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<% } %>

@@ -1,0 +1,38 @@
+
+
+<nav class="blog-pagination justify-content-center d-flex">
+    <ul class="pagination">
+        <% const totalPages = data.articleRecord.totalPages %>
+        <% const page = data.articleRecord.page %>
+        <% if (page > 1) {%>
+            <li class="page-item">
+                <a href="?pageSize=10&pageNo=<% page - 1  %>" class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">
+                        <span class="lnr lnr-chevron-left"></span>
+                    </span>
+                </a>
+            </li>
+        <% } %>
+
+        <% for (let i = page - 2; i < page + 2; i++ ) { %>
+            <% if (i > 0 && i <= totalPages) {%>
+                <% if (i == page) { %>
+                    <li class="page-item active"><a href="?pageSize=10&pageNo=<%= i  %>" class="page-link"><%= i  %></a></li>
+                   
+                <% } else {%>
+                    <li class="page-item"><a href="?pageSize=10&pageNo=<%= i  %>" class="page-link"><%= i  %></a></li>
+                <% } %>
+            <% } %>
+        <% } %>
+        
+        <% if (page < totalPages) {%>
+            <li class="page-item">
+                <a href="?pageSize=10&pageNo=<% page + 1  %>" class="page-link" aria-label="Next">
+                    <span aria-hidden="true">
+                        <span class="lnr lnr-chevron-right"></span>
+                    </span>
+                </a>
+            </li>
+        <% } %>
+    </ul>
+</nav>

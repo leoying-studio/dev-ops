@@ -1,0 +1,5 @@
+{
+    "secretKey": "touristId",
+    "expirationTime": 360000000,
+    "tokenKey": "touristId"
+}

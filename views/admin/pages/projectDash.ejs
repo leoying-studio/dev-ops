@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!-- Title here -->
+		<title>CakeFactory</title>
+		<!-- Description, Keywords and Author -->
+		<meta name="description" content="Your description">
+		<meta name="keywords" content="Your,Keywords">
+		<meta name="author" content="ResponsiveWebInc">
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<!-- Styles -->
+		<!-- Bootstrap CSS -->
+		<link href="/projects/css/bootstrap.min.css" rel="stylesheet">
+		<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+		<link href="/projects/css/settings.css" rel="stylesheet">		
+		<!-- FlexSlider Css -->
+		<link rel="stylesheet" href="/projects/css/flexslider.css" media="screen">
+		<!-- Portfolio CSS -->
+		<link href="/projects/css/prettyPhoto.css" rel="stylesheet">
+		<!-- Font awesome CSS -->
+		<link href="/projects/css/font-awesome.min.css" rel="stylesheet">	
+		<!-- Custom Less -->
+		<link href="/projects/css/less-style.css" rel="stylesheet">	
+		<!-- Custom CSS -->
+		<link href="/projects/css/style.css" rel="stylesheet">
+		<!--[if IE]><link rel="stylesheet" href="css/ie-style.css"><![endif]-->
+		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="">
+	</head>
+	
+	<body>
+
+
+ 
+
+		
+			
+		<!-- Shopping cart Modal -->
+		<div class="modal fade" id="shoppingcart1" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title">Shopping Cart</h4>
+					</div>
+					<div class="modal-body">
+						<!-- Items table -->
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Quantity</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><a href="#">Exception Reins Evocative</a></td>
+									<td>2</td>
+									<td>$200</td>
+								</tr>
+								<tr>
+									<td><a href="#">Taut Mayoress Alias Appendicitis</a></td>
+									<td>1</td>
+									<td>$190</td>
+								</tr>
+								<tr>
+									<td><a href="#">Sinter et Molests Perfectionist</a></td>
+									<td>4</td>
+									<td>$99</td>
+								</tr>
+								<tr>
+									<th></th>
+									<th>Total</th>
+									<th>$489</th>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Continue Shopping</button>
+						<button type="button" class="btn btn-info">Checkout</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- Model End -->
+		
+		<!-- Page Wrapper -->
+		<div class="wrapper">
+		
+			<!-- Header Start -->
+			
+			
+			
+			<!-- Header End -->
+			
+			<!-- Slider Start 
+			#################################
+				- THEMEPUNCH BANNER -
+			#################################	-->
+
+			
+			<!-- Slider End -->
+			
+			
+			
+			<!-- Main Content -->
+			<div class="main-content">
+				<!-- Dishes Start -->
+					
+				<div class="dishes padd">
+					<div class="container">
+						<!-- Default Heading -->
+						<div class="default-heading">
+							<!-- Crown image -->
+							<img class="img-responsive" src="/projects/picture/crown.png" alt="">
+							<!-- Heading -->
+							<h2>项目集合</h2>
+							<!-- Paragraph -->
+							<p>追求完美，超越期待，我们的项目将让您感受无与伦比的品质。</p>
+							<!-- Border -->
+							<div class="border"></div>
+						</div>
+						<div class="row">
+							<% data.projectRecord.results.forEach((item) => { %>
+								<% let fieldsValue = item.formFieldsValue || {} %>
+								<div class="col-md-3 col-sm-6">	
+									<div class="dishes-item-container">
+										<!-- Image Frame -->
+										<div class="img-frame" style="width: 250px;height: 250px;">
+											<!-- Image -->
+											<img src="<%= item.logo%>" class="img-responsive" alt=""  style="display: block; width: 100%; height: 100%; object-fit: cover;" />
+											<!-- Block for on hover effect to image -->
+											<div class="img-frame-hover">
+												<!-- Hover Icon -->
+												<a href="#"><i class="fa fa-cutlery"></i></a>
+											</div>
+										</div>
+										<!-- Dish Details -->
+										<div class="dish-details">
+											<!-- Heading -->
+											<h3><%= item.name  %></h3>
+											<!-- Paragraph -->
+											<p><%= item.desc  %></p>
+											<!-- Button -->
+											<!-- <a href="#" class="btn btn-danger btn-sm">点击 发布</a> -->
+										</div>
+									</div>
+								</div>
+							<%})%>
+						</div>
+					</div>					
+				</div>
+
+				<!-- Dishes End -->
+			
+				
+				
+				
+				<!-- Chefs Start -->
+				
+				
+				<div class="container">
+					 <form action="/deploy/project" method="post">
+						 <textarea name="desc" class="form-control" style="margin-bottom: 8px;" name="desc"></textarea>
+						 <button class="btn btn-primary pull-right">发布</button>
+					 </form>
+				</div>
+				
+			
+		</div><!-- / Wrapper End -->
+		
+		
+		<!-- Scroll to top -->
+		<span class="totop"><a href="#"><i class="fa fa-angle-up"></i></a></span> 
+		
+		
+		
+		<!-- Javascript files -->
+		<!-- jQuery -->
+		<script src="static/js/jquery.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="static/js/bootstrap.min.js"></script>
+		<!-- SLIDER REVOLUTION 4.x SCRIPTS  -->
+		<script type="text/javascript" src="static/js/jquery.themepunch.plugins.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.themepunch.revolution.min.js"></script>
+		<!-- FLEX SLIDER SCRIPTS  -->
+		<script defer="" src="static/js/jquery.flexslider-min.js"></script>
+		<!-- Pretty Photo JS -->
+		<script src="static/js/jquery.prettyPhoto.js"></script>
+		<!-- Respond JS for IE8 -->
+		<script src="static/js/respond.min.js"></script>
+		<!-- HTML5 Support for IE -->
+		<script src="static/js/html5shiv.js"></script>
+		<!-- Custom JS -->
+		<script src="static/js/custom.js"></script>
+		<!-- JS code for this page -->
+		<script>
+		/* ******************************************** */
+		/*  JS for SLIDER REVOLUTION  */
+		/* ******************************************** */
+				jQuery(document).ready(function() {
+					   jQuery('.tp-banner').revolution(
+						{
+							delay:9000,
+							startheight:500,
+							
+							hideThumbs:10,
+							
+							navigationType:"bullet",	
+														
+							hideArrowsOnMobile:"on",
+							
+							touchenabled:"on",
+							onHoverStop:"on",
+							
+							navOffsetHorizontal:0,
+							navOffsetVertical:20,
+							
+							stopAtSlide:-1,
+							stopAfterLoops:-1,
+
+							shadow:0,
+							
+							fullWidth:"on",
+							fullScreen:"off"
+						});
+				});
+		/* ******************************************** */
+		/*  JS for FlexSlider  */
+		/* ******************************************** */
+		
+			$(window).load(function(){
+				$('.flexslider-recent').flexslider({
+					animation:		"fade",
+					animationSpeed:	1000,
+					controlNav:		true,
+					directionNav:	false
+				});
+				$('.flexslider-testimonial').flexslider({
+					animation: 		"fade",
+					slideshowSpeed:	5000,
+					animationSpeed:	1000,
+					controlNav:		true,
+					directionNav:	false
+				});
+			});
+		
+		/* Gallery */
+
+		jQuery(".gallery-img-link").prettyPhoto({
+		   overlay_gallery: false, social_tools: false
+		});
+		
+		</script>
+	</body>	
+</html>

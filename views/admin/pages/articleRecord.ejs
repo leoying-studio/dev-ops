@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <script type="application/x-javascript">
+      addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="/themes/1/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- Custom CSS -->
+    <link href="/themes/1/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- font CSS -->
+    <!-- font-awesome icons -->
+    <link href="/themes/1/css/font-awesome.css" rel="stylesheet" />
+    <!-- //font-awesome icons -->
+    <!-- js-->
+    <script src="/themes/1/js/jquery-1.11.1.min.js"></script>
+    <script src="/themes/1/js/modernizr.custom.js"></script>
+    <!--webfonts-->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!--//webfonts-->
+    <!--animate-->
+    <link
+      href="/themes/1/css/animate.css"
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+    />
+    <script src="/themes/1/js/wow.min.js"></script>
+    <script>
+      new WOW().init();
+    </script>
+    <!--//end-animate-->
+    <!-- chart -->
+    <script src="/themes/1/js/Chart.js"></script>
+    <!-- //chart -->
+    <!--Calender-->
+    <link rel="stylesheet" href="/themes/1/css/clndr.css" type="text/css" />
+    <script
+      src="/themes/1/js/underscore-min.js"
+      type="text/javascript"
+    ></script>
+    <script src="/themes/1/js/moment-2.2.1.js" type="text/javascript"></script>
+    <script src="/themes/1/js/clndr.js" type="text/javascript"></script>
+    <script src="/themes/1/js/site.js" type="text/javascript"></script>
+
+    <link href="/selecttree/index.css" type="text/css" rel="stylesheet" />
+    <script src="/selecttree/index.js" type="text/javascript"></script>
+    <!--End Calender-->
+    <!-- Metis Menu -->
+    <script src="/themes/1/js/metisMenu.min.js"></script>
+    <script src="/themes/1/js/custom.js"></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="/ueditor/ueditor.config.js"
+    ></script>
+    <script
+      type="text/javascript"
+      charset="utf-8"
+      src="/ueditor/ueditor.all.min.js"
+    ></script>
+    <link href="/themes/1/css/custom.css" rel="stylesheet" />
+    <style>
+      .modal-backdrop {
+        z-index: 1;
+      }
+      .modal {
+        z-index: 2;
+      }
+    </style>
+    <!--//Metis Menu -->
+  </head>
+  <body class="cbp-spmenu-push">
+    <div class="tables">
+      <div class="bs-example widget-shadow" data-example-id="contextual-table">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-toggle="modal"
+          data-target="#exampleModal"
+          data-whatever="@mdo"
+          style="margin-bottom: 12px"
+        >
+          创建文章
+        </button>
+        <h4>文章列表</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>发布时间</th>
+              <th>距离时间</th>
+              <th>发布人</th>
+              <th>名称</th>
+              <th>内容</th>
+              <th>封面</th>
+              <th>推荐状态</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for (let i = 0; i < data.articleRecord.results.length; i++) {%>
+            <% let item = data.articleRecord.results[i]%>
+            <tr class="active">
+              <th scope="row"><%=i + 1%></th>
+              <td><%=item.formattedCreatedAt%></td>
+              <td><%=item.timeAgo%></td>
+              <td><%=item.user && item.user.nickName%></td>
+              <td><%=item.name%></td>
+              <td style="max-width: 30rem"><%=item.content%></td>
+              <td>
+                <img src="<%=item.cover%>" width="200" />
+              </td>
+              <td><%=item.recommend==1 ? '是' : '否' %></td>
+              <th>
+                <a
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+                href="/admin/content/article/recommend?id=<%=item._id%>&recommend=<%=item.recommend==1 ? 0 : 1 %>"
+              >
+                  <%= item.recommend==1 ? '取消推荐' : '推荐'  %>
+                </a>
+                <a
+                  class="btn btn-danger"
+                  href="/admin/config/dict/options/destory?dictsetId=<%=item._id%>"
+                  >删除</a
+                >
+                <a
+                  class="btn btn-primary"
+                  href="/config/dict/options/destory?dictsetId=<%=item._id%>"
+                  >编辑</a
+                >
+              </th>
+            </tr>
+            <%} %>
+          </tbody>
+        </table>
+        <div class="col-md-8 modal-grids">
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <h4 class="modal-title" id="exampleModalLabel">添加文章</h4>
+                </div>
+                <div class="modal-body">
+                  <div action="/content/article/create" method="post">
+                    <div class="form-group">
+                      <label for="message-text" class="control-label"
+                        >所属分类:</label
+                      >
+                      <div
+                        name="cateId"
+                        id="cate"
+                        class="treePickerWrapper"
+                      ></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="recipient-name" class="control-label"
+                        >文章标题:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="articleName"
+                        name="name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="recipient-name" class="control-label"
+                        >基础描述:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="articleDesc"
+                        name="desc"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="recipient-name" class="control-label"
+                        >文章配图logo:</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="recipient-name"
+                        name="cover"
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="message-text" class="control-label"
+                        >文章内容:</label
+                      >
+                      <script
+                        id="editor"
+                        name="content"
+                        type="text/plain"
+                        style="height: 300px"
+                      ></script>
+                    </div>
+                    <div class="modal-footer">
+      
+                      <button
+                        type="button"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                      >
+                        关闭
+                      </button>
+                      <button class="btn btn-primary" type="submit" id="save">
+                        保存
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/themes/1/js/jquery.nicescroll.js"></script>
+    <script src="/themes/1/js/scripts.js"></script>
+    <script src="/themes/1/js/bootstrap.js"></script>
+    <script type="text/javascript">
+      //实例化编辑器
+      //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+      const ue = UE.getEditor("editor");
+      $.get("/admin/content/categories/tree").then(function (res) {
+        const data = res.data || [];
+        const formatter = function (list) {
+          list.forEach(function (item) {
+            item.key = item._id;
+            item.type = Array.isArray(item.children) ? "folder" : "file";
+            if (Array.isArray(item.children)) {
+              formatter(item.children);
+            }
+          });
+        };
+        formatter(data);
+        $("#cate").myTree(data, true, null, "请选择", 150);
+      });
+
+      $("#save").click(() => {
+        const keys = $("#cate").getTreeKeys();
+        const values = {};
+        $("#exampleModal [name]").each(function () {
+          values[$(this).attr("name")] = $(this).val();
+        });
+        const content = ue.getContent();
+        $.post("/admin/content/article/create", {
+          ...values,
+          content,
+          cateId: keys.join(","),
+        }).catch(() => {});
+      });
+    </script>
+  </body>
+</html>

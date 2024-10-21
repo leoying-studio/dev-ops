@@ -1,0 +1,218 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>General Elements</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="/themes/1/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="/themes/1/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="/themes/1/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+<script src="/themes/1/js/jquery-1.11.1.min.js"></script>
+<script src="/themes/1/js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="/themes/1/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="/themes/1/js/wow.min.js"></script>
+<script src="/themes/1/js/jquery.form.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="/themes/1/js/metisMenu.min.js"></script>
+<script src="/themes/1/js/custom.js"></script>
+<link href="/themes/1/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+			<div class="main-page">
+        <div class="tables">
+          <div class="bs-example widget-shadow" data-example-id="contextual-table">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-bottom: 12px;">新建项目</button>
+            <h4>项目记录</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>创建时间</th>
+                  <th>创建人</th>
+                  <th>项目名称</th>
+                  <th>项目LOGO</th>
+                  <th>表单项</th>
+                  <th>备注说明</th>
+                  <th>项目状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let i = 0; i < data.projectRecord.results.length; i++) {%>
+                  <% let item = data.projectRecord.results[i]%>
+                  <% let options = item.options%>
+                  <tr class="active">
+                    <th scope="row"><%=i + 1%></th>
+                    <td><%=item.formattedCreatedAt%></td>
+                    <td><%=item.user && item.user.nickName%></td>
+                    <td><%=item.name%></td>
+                    <td>
+                       <img src="<%= item.logo %>" width="50px" height="50px" style="object-fit: cover;"/>
+                    </td>
+                    <th>
+                      <div class="btn btn-link" data-toggle="modal" data-target="#options_<%= item._id%>">填写</div>
+                      <div class="modal fade" id="options_<%= item._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="exampleModalLabel">填写表单</h4>
+                            </div>
+                            <div class="modal-body">
+                              <%- include('./../components/dynamicForm', {form: item.form || [], action: "/projects/save/form", id: item._id, formFieldsValue: item.formFieldsValue }) %>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </th>
+                    <td><%=item.desc%></td>
+                    <td>
+                      <!-- // 1 是关， 0是开 -->
+                         <%= item.isOpen ? '关闭' : '开启' %>
+                    </td>
+                    <td>
+                      <!-- // 1 是关， 0是开 -->
+                      <a href="/projects/query/switch?id=<%=item._id%>&isOpen=<%=item.isOpen ? 0 : 1%>" class="btn btn-primary"><%= item.isOpen ? '开启' : '关闭' %></a>  
+                      <a class="btn btn-danger" href="/projects/destory/<%=item._id%>" >删除</a>
+                    </td>
+                  </tr>
+                <%} %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+			
+					<div class="col-md-4 modal-grids">
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="exampleModalLabel">新建项目</h4>
+									</div>
+									<div class="modal-body">
+										<form action="/projects/post/create" method="post"> 
+											<div class="form-group">
+												<label for="recipient-name" class="control-label">项目名称:</label>
+												<input type="text" class="form-control" id="recipient-name" name="name">
+											</div>
+                      <div class="form-group">
+												<label for="recipient-name" class="control-label">项目logo:</label>
+												<input type="text" class="form-control" id="recipient-name" name="logo">
+											</div>
+                      <div class="form-group">
+												<label for="message-text" class="control-label">选择表单:</label>
+												<select class="form-control" name="formId">
+                          <% for (let i = 0; i < data.formAll.length; i++) {%>
+                            <% let item = data.formAll[i]; %>
+                            <option value="<%= item._id %>"><%= item.name %></option>
+                          <% } %>
+                        </select>
+											</div>
+											<div class="form-group">
+												<label for="message-text" class="control-label">项目备说明:</label>
+												<textarea class="form-control" id="message-text" name="desc"></textarea>
+											</div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-primary" type="submit">保存</button>
+                      </div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+        
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	<!-- Classie -->
+		<script src="/themes/1/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<script src="/themes/1/js/jquery.nicescroll.js"></script>
+	<script src="/themes/1/js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+   <script src="/themes/1/js/bootstrap.js"> </script>
+
+   <script>
+    (function() {
+        var btns = $('table .btn-primary');
+        var btnDangers = $('table .btn-danger');
+        btns.on("click", function() {
+          var formId = $(this).attr("formId");
+          var defaultValues = {
+                'formId': formId
+            };
+            $('#formWidget').setFormDefault(defaultValues);
+        });
+
+        // btnDangers.on("click", function() {
+        //   var dictSetId = $(this).attr("dictSetId");
+        //   bootbox.confirm({
+        //     message: "确认要执行此操作吗？",
+        //     buttons: {
+        //         confirm: {
+        //             label: '是',
+        //             className: 'btn-success'
+        //         },
+        //         cancel: {
+        //             label: '否',
+        //             className: 'btn-danger'
+        //         }
+        //     },
+        //     callback: function(result) {
+        //         if(result){
+        //             // 用户点击了是，执行相关操作
+        //            $.post("/config/dict/destory",{ id: dictSetId },function(res) {
+        //                 debugger
+        //            })  
+        //         } 
+        //     }
+        // });
+      // })
+    })()
+  </script>
+</body>
+</html>

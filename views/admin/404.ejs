@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Error 404 - Page Not Found</title>
+    <!-- 引入Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="error-page">
+        <h2 class="headline text-warning">404</h2>
+        <div class="error-content">
+          <h3>
+            <i class="fas fa-exclamation-triangle text-warning"></i> Oops! Page
+            not found.
+          </h3>
+          <p>
+            We could not find the page you were looking for. Meanwhile, you may
+            <a href="javascript:history.back()">返回到主页</a> or try
+            using the search form.
+          </p>
+          <form class="search-form">
+            <div class="input-group">
+              <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="Search"
+              />
+              <div class="input-group-append">
+                <button type="submit" name="submit" class="btn btn-warning">
+                    搜索
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- 引入Bootstrap JS -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+  </body>
+</html>

@@ -1,0 +1,141 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/www/img/favicon.png" type="image/png">
+        <title>Opium Blog</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/www/css/bootstrap.css">
+        <link rel="stylesheet" href="/www/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/www/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/www/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/www/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/www/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/www/vendors/animate-css/animate.css">
+        <link rel="stylesheet" href="/www/vendors/jquery-ui/jquery-ui.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/www/css/style.css">
+        <link rel="stylesheet" href="/www/css/responsive.css">
+    </head>
+    <body>
+        
+        <!--================Header Menu Area =================-->
+		<%- include('./components/header') %>	
+        <!--================Header Menu Area =================-->
+        
+        <!--================Home Banner Area =================-->
+		<%- include('./components/recommend') %>
+        <!--================End Home Banner Area =================-->
+        
+        <!--================Blog Area =================-->
+        <section class="blog_area p_120">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="blog_left_sidebar">
+							<% for (let i = 0; i < data.articleRecord.results.length; i++) {%>
+								<% let item = data.articleRecord.results[i]%>
+								<% let next = data.articleRecord.results[i + 1]%>
+								<% if (i % 2 === 0) { %>
+									<article class="blog_style1">
+										<div class="blog_img">
+											<img class="img-fluid" src="<%= item.cover%>" alt="">
+										</div>
+										<div class="blog_text">
+											<div class="blog_text_inner">
+												<div class="cat">
+													<a class="cat_btn" href="/www/#">Gadgets</a>
+													<a href="/www/#"><i class="fa fa-calendar" aria-hidden="true"></i> <%= item.timeAgo  %></a>
+													<a href="/www/#"><i class="fa fa-comments-o" aria-hidden="true"></i> <%= item.commentCount %></a>
+												</div>
+												<a href="/www/#"><h4><%= item.timeAgo %></h4></a>
+												<p><%= item.desc%></p>
+												<a class="blog_btn" href="/detail/<%= item._id%>">查看详情</a>
+											</div>
+										</div>
+									</article>
+								<% } else {%>
+									<div class="row">
+										<div class="col-md-6">
+											<article class="blog_style1 small">
+												<div class="blog_img">
+													<img class="img-fluid" src="<%= item.cover%>" alt="">
+												</div>
+												<div class="blog_text">
+													<div class="blog_text_inner">
+														<div class="cat">
+															<a class="cat_btn" href="/www/#">Gadgets</a>
+															<a href="/www/#"><i class="fa fa-calendar" aria-hidden="true"></i><%= item.timeAgo  %></a>
+															<a href="/www/#"><i class="fa fa-comments-o" aria-hidden="true"></i> <%= item.commentCount  %></a>
+														</div>
+														<a href="/www/single-blog.html"><h4><%= item.timeAgo %></h4></a>
+														<p><%= item.desc%></p>
+														<a class="blog_btn" href="/detail/<%= item._id%>">查看详情</a>
+													</div>
+												</div>
+											</article>
+										</div>
+										<% if (next) {%>
+											<div class="col-md-6">
+												<article class="blog_style1 small">
+													<div class="blog_img">
+														<img class="img-fluid" src="<%= item.cover%>" alt="">
+													</div>
+													<div class="blog_text">
+														<div class="blog_text_inner">
+															<div class="cat">
+																<a class="cat_btn" href="/www/#">Gadgets</a>
+																<a href="/www/#"><i class="fa fa-calendar" aria-hidden="true"></i> <%= item.timeAgo  %></a>
+																<a href="/www/#"><i class="fa fa-comments-o" aria-hidden="true"></i> <%= item.commentCount  %></a>
+															</div>
+															<a href="/www/single-blog.html"><h4><%= item.timeAgo %></h4></a>
+															<p><%= item.desc%></p>
+															<a class="blog_btn" href="/detail/<%= item._id%>">查看详情</a>	
+														</div>
+													</div>
+												</article>
+											</div>
+										<% } %>
+										
+									</div>
+								<% } %>
+							<% } %>
+    
+							<%- include('./components/pagination') %>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+						<%- include('./components/rightSideBar') %>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+        
+        <!--================ start footer Area  =================-->	
+     
+		<!--================ End footer Area  =================-->
+        <%- include('./components/footer') %>
+        
+        
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="/www/js/jquery-3.2.1.min.js"></script>
+        <script src="/www/js/popper.js"></script>
+        <script src="/www/js/bootstrap.min.js"></script>
+        <script src="/www/js/stellar.js"></script>
+        <script src="/www/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/www/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="/www/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="/www/vendors/isotope/isotope-min.js"></script>
+        <script src="/www/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/www/vendors/jquery-ui/jquery-ui.js"></script>
+        <script src="/www/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/www/js/mail-script.js"></script>
+        <script src="/www/js/theme.js"></script>
+    </body>
+</html>

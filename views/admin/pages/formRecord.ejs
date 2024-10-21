@@ -1,0 +1,243 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>General Elements</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- Bootstrap Core CSS -->
+<link href="/themes/1/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom CSS -->
+<link href="/themes/1/css/style.css" rel='stylesheet' type='text/css' />
+<!-- font CSS -->
+<!-- font-awesome icons -->
+<link href="/themes/1/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome icons -->
+ <!-- js-->
+<script src="/themes/1/js/jquery-1.11.1.min.js"></script>
+<script src="/themes/1/js/modernizr.custom.js"></script>
+<!--webfonts-->
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+<!--//webfonts--> 
+<!--animate-->
+<link href="/themes/1/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<script src="/themes/1/js/wow.min.js"></script>
+<script src="/themes/1/js/jquery.form.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+	<script>
+		 new WOW().init();
+	</script>
+<!--//end-animate-->
+<!-- Metis Menu -->
+<script src="/themes/1/js/metisMenu.min.js"></script>
+<script src="/themes/1/js/custom.js"></script>
+<link href="/themes/1/css/custom.css" rel="stylesheet">
+<!--//Metis Menu -->
+
+
+</head> 
+<body class="cbp-spmenu-push">
+	<div class="main-content">
+			<div class="main-page">
+        <div class="tables">
+          <div class="bs-example widget-shadow" data-example-id="contextual-table">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" style="margin-bottom: 12px;">创建表单</button>
+            <h4>表单记录</h4>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>创建时间</th>
+                  <th>表单名称</th>
+                  <th>控件选项</th>
+                  <th>备注说明</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for (let i = 0; i < data.formRecord.results.length; i++) {%>
+                  <% let item = data.formRecord.results[i]%>
+                  <% let widgets = item.widgets%>
+                  <tr class="active">
+                    <th scope="row"><%=i + 1%></th>
+                    <td><%=item.formattedCreatedAt%></td>
+                    <td><%=item.name%></td>
+                    <th>
+                      <div class="btn btn-link" data-toggle="modal" data-target="#widgets_<%= item._id%>">查看</div>
+                      <div class="modal fade" id="widgets_<%= item._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="exampleModalLabel">控件选项</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>#</th>
+                                      <th>控件名称</th>
+                                      <th>控件值</th>
+                                      <th>控件类型</th>
+                                      <td>控件名称</td>
+                                      <td>操作</td>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% widgets.map((widget, i) => { %>
+                                          <tr>
+                                            <td scope="row"><%=i + 1%></td>
+                                            <td><%=widget.label%></td>
+                                            <td><%=widget.value%></td>
+                                            <td><%=widget.type%></td>
+                                            <td><%=widget.name%></td>
+                                            <td>
+                                              <div class="btn btn-danger">删除</div>
+                                            </td>
+                                          </tr>
+                                      <% }) %>
+                                  </tbody>
+                                </table>
+                            </div>
+                          </div>
+                        </div>
+                    </th>
+                    <td><%=item.desc%></td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" data-whatever="@mdo" formId=<%=item._id%>>新增控件</button>
+                        <a class="btn btn-danger" href="/config/form/destory?formId=<%=item._id%>" >删除</a>
+                    </td>
+                  </tr>
+                <%} %>
+              </tbody>
+            </table>
+          </div>
+     
+        </div>
+			
+					<div class="col-md-4 modal-grids">
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="exampleModalLabel">新建表单</h4>
+									</div>
+									<div class="modal-body">
+										<form action="/config/form/create" method="post"> 
+											<div class="form-group">
+												<label for="recipient-name" class="control-label">表单名称:</label>
+												<input type="text" class="form-control" id="recipient-name" name="name">
+											</div>
+											<div class="form-group">
+												<label for="message-text" class="control-label">表单备注:</label>
+												<textarea class="form-control" id="message-text" name="desc"></textarea>
+											</div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-primary" type="submit">保存</button>
+                      </div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+          <div class="col-md-4 modal-grids"></div>
+						<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<h4 class="modal-title" id="exampleModalLabel">填写表单</h4>
+									</div>
+									<div class="modal-body">
+										<form action="/config/form/widget/create" method="post" id="formWidget"> 
+                      <div class="form-group">
+												<label for="recipient-name" class="control-label">表单ID:</label>
+												<input type="text" class="form-control" name="formId">
+											</div>
+											<div class="form-group">
+												<label for="recipient-name" class="control-label">控件名称:</label>
+												<input type="text" class="form-control" name="label">
+											</div>
+                      <div class="form-group">
+												<label for="recipient-name" class="control-label">控件类型:</label>
+                        <select class="form-control" name="type">
+                            <option value="1">输入框</option>
+                            <option value="2">复选框</option>
+                            <option value="3">单选框</option>
+                            <option value="4">下拉框</option>
+                            <option value="5">文本框</option>
+                        </select>
+											</div>
+											<div class="form-group">
+												<label for="message-text" class="control-label">控件值:</label>
+												<input class="form-control" name="value"></textarea>
+											</div>
+                      <div class="form-group">
+												<label for="message-text" class="control-label">选择字典:</label>
+                        <select class="form-control" name="dictSet">
+                            <% for (let i = 0; i < data.dictAll.length; i++) {%>
+                              <option value="<%= data.dictAll[i]._id %>"><%= data.dictAll[i].name %></option>
+                            <% } %>
+                        </select>
+											</div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button class="btn btn-primary" type="submit">保存</button>
+                      </div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	<!-- Classie -->
+		<script src="/themes/1/js/classie.js"></script>
+		<script>
+			var menuLeft = document.getElementById( 'cbp-spmenu-s1' ),
+				showLeftPush = document.getElementById( 'showLeftPush' ),
+				body = document.body;
+				
+			showLeftPush.onclick = function() {
+				classie.toggle( this, 'active' );
+				classie.toggle( body, 'cbp-spmenu-push-toright' );
+				classie.toggle( menuLeft, 'cbp-spmenu-open' );
+				disableOther( 'showLeftPush' );
+			};
+			
+			function disableOther( button ) {
+				if( button !== 'showLeftPush' ) {
+					classie.toggle( showLeftPush, 'disabled' );
+				}
+			}
+		</script>
+	<!--scrolling js-->
+	<script src="/themes/1/js/jquery.nicescroll.js"></script>
+	<script src="/themes/1/js/scripts.js"></script>
+	<!--//scrolling js-->
+	<!-- Bootstrap Core JavaScript -->
+   <script src="/themes/1/js/bootstrap.js"> </script>
+
+   <script>
+    (function() {
+        var btns = $('table .btn-primary');
+        var btnDangers = $('table .btn-danger');
+        btns.on("click", function() {
+          var formId = $(this).attr("formId");
+          var defaultValues = {
+                'formId': formId
+            };
+            $('#formWidget').setFormDefault(defaultValues);
+        });
+    })()
+  </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>EJS Example</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css"
+    />
+    <style>
+      .backdrop {
+        background-image: url("path/to/your/image.jpg");
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./components/nav') %>
+    <div class="container text-center mt-5">
+      <h3 class="mb-5">
+        devOps
+        <small class="text-muted">管理系统</small>
+      </h3>
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://inews.gtimg.com/om_bt/OmzmxjtoDmpt8J9GXvmYXWkkP49kvwBPtLMen1RvZ8-gEAA/641"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">sass部署</h5>
+              <p class="card-text">构建PC端的Sass应用，一键部署到服务器目录</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://inews.gtimg.com/om_bt/OmzmxjtoDmpt8J9GXvmYXWkkP49kvwBPtLMen1RvZ8-gEAA/641"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">sass部署</h5>
+              <p class="card-text">用于构建会员端端的小程序应用，一键部署</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img
+              src="https://inews.gtimg.com/om_bt/OmzmxjtoDmpt8J9GXvmYXWkkP49kvwBPtLMen1RvZ8-gEAA/641"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title">sass部署</h5>
+              <p class="card-text">用于构建教练端的小程序应用，一键部署</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form action="/deploy/sass" method="post">
+        <div class="mt-5">
+          <label for="exampleFormControlTextarea1" class="form-label"
+            >发布描述</label
+          >
+          <textarea
+            name="desc"
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="3"
+          ></textarea>
+        </div>
+        <button class="btn btn-primary mt-4 float-end">点击发布</button>
+      </form>
+    </div>
+  </body>
+</html>

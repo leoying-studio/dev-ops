@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="/www/img/favicon.png" type="image/png">
+        <title>Opium Blog</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/www/css/bootstrap.css">
+        <link rel="stylesheet" href="/www/vendors/linericon/style.css">
+        <link rel="stylesheet" href="/www/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/www/vendors/owl-carousel/owl.carousel.min.css">
+        <link rel="stylesheet" href="/www/vendors/lightbox/simpleLightbox.css">
+        <link rel="stylesheet" href="/www/vendors/nice-select/css/nice-select.css">
+        <link rel="stylesheet" href="/www/vendors/animate-css/animate.css">
+        <link rel="stylesheet" href="/www/vendors/jquery-ui/jquery-ui.css">
+        <!-- main css -->
+        <link rel="stylesheet" href="/www/css/style.css">
+        <link rel="stylesheet" href="/www/css/responsive.css">
+    </head>
+    <body>
+        
+        <!--================Header Menu Area =================-->
+        <%- include('./components/header') %>	
+        <!--================Header Menu Area =================-->
+        
+        <!--================Home Banner Area =================-->
+        <section class="banner_area">
+        	<div class="container">
+				<div class="row banner_inner">
+					<div class="col-lg-5"></div>
+					<div class="col-lg-7">
+						<div class="banner_content text-center">
+							<h2>博客文章详情</h2>
+							<div class="page_link">
+								<a href="/">首页</a>
+								<a>文章详情</a>
+							</div>
+						</div>
+					</div>
+				</div>
+        	</div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        
+        <!--================Blog Area =================-->
+        <section class="blog_area p_120 single-post-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+       					<div class="main_blog_details">
+       						<img class="img-fluid" src="<%= data.article?.cover %>" alt="">
+       						<a href="/www/#"><h4><%= data.article?.name %></h4></a>
+       						<div class="user_details">
+       							<div class="float-left">
+       								<a href="/www/#">生活</a>
+       								<a href="/www/#">记录</a>
+       							</div>
+       							<div class="float-right">
+       								<div class="media">
+       									<div class="media-body">
+       										<h5><%= data.article?.user.userName %></h5>
+       										<p><%= data.article?.formattedCreatedAt %></p>
+       									</div>
+       									<div class="d-flex">
+       										<img src="/www/img/blog/user-img.jpg" alt="">
+       									</div>
+       								</div>
+       							</div>
+       						</div>
+                            <div id="innerHTMLContainer">
+                                <%- include('./components/html-content') %>
+                            </div>
+      						<div class="news_d_footer">
+      							<a href="/article/like?articleId=<%= data.article._id %>"><i class="lnr lnr lnr-heart"></i><%= data.article?.like?.count || 0  %>人喜欢了该文章</a>
+      							<a class="justify-content-center ml-auto"><i class="lnr lnr lnr-bubble"></i><%= data.article.commentCount || 0  %>条评论</a>
+      							<div class="news_socail ml-auto">
+									<a href="/www/#"><i class="fa fa-facebook"></i></a>
+									<a href="/www/#"><i class="fa fa-twitter"></i></a>
+									<a href="/www/#"><i class="fa fa-youtube-play"></i></a>
+									<a href="/www/#"><i class="fa fa-pinterest"></i></a>
+									<a href="/www/#"><i class="fa fa-rss"></i></a>
+								</div>
+      						</div>
+       					</div>
+       					<!-- <div class="navigation-area">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+                                    <div class="thumb">
+                                        <a href="/www/#"><img class="img-fluid" src="/www/img/blog/prev.jpg" alt=""></a>
+                                    </div>
+                                    <div class="arrow">
+                                        <a href="/www/#"><span class="lnr text-white lnr-arrow-left"></span></a>
+                                    </div>
+                                    <div class="detials">
+                                        <p>Prev Post</p>
+                                        <a href="/www/#"><h4>Space The Final Frontier</h4></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+                                    <div class="detials">
+                                        <p>Next Post</p>
+                                        <a href="/www/#"><h4>Telescopes 101</h4></a>
+                                    </div>
+                                    <div class="arrow">
+                                        <a href="/www/#"><span class="lnr text-white lnr-arrow-right"></span></a>
+                                    </div>
+                                    <div class="thumb">
+                                        <a href="/www/#"><img class="img-fluid" src="/www/img/blog/next.jpg" alt=""></a>
+                                    </div>										
+                                </div>									
+                            </div>
+                        </div> -->
+                        <div class="comments-area">
+                            <h4>评论</h4>
+                            <% data.comments?.forEach(function(item) { %>
+                                <div class="comment-list">
+                                    <div class="single-comment justify-content-between d-flex">
+                                        <div class="user justify-content-between d-flex">
+                                            <div class="thumb">
+                                                <img src="/www/img/blog/c1.jpg" alt="">
+                                            </div>
+                                            <div class="desc">
+                                                <h5><a href="/www/#"><%= item.enterName %></a></h5>
+                                                <p class="date"><%= item.formattedCreatedAt  %></p>
+                                                <p class="comment">
+                                                    <%=item.message %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="reply-btn">
+                                               <a href="/www/" class="btn-reply text-uppercase">reply</a> 
+                                        </div> -->
+                                    </div>
+                                </div>	
+                            <% }) %>
+                        </div>
+                        <div class="comment-form">
+                            <h4>留言回复</h4>
+                            <form action="/comment/submit" method="post">
+                                <div class="form-group form-inline">
+                                  <div class="form-group col-lg-6 col-md-6 name" style="display: none;">
+                                    <input type="text" class="form-control" name="articleId" value="<%= data.article._id %>">
+                                  </div>
+                                  <div class="form-group col-lg-6 col-md-6 name">
+                                    <input type="text" class="form-control" name="enterName" placeholder="填写 名称" onfocus="this.placeholder = ''" onblur="this.placeholder = '填写 名称'">
+                                  </div>
+                                  <div class="form-group col-lg-6 col-md-6 email">
+                                    <input type="email" class="form-control" name="email" placeholder="填写 邮箱地址"  />
+                                  </div>										
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control mb-10" rows="5" name="message" placeholder="留言内容"  required=""></textarea>
+                                </div>
+                                <button class="primary-btn submit_btn">提交评论</button>	
+                            </form>
+                        </div>
+        			</div>
+                    <div class="col-lg-4">
+                        <%- include('./components/rightSideBar') %>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--================Blog Area =================-->
+        
+        <!--================ start footer Area  =================-->	
+        <%- include('./components/footer') %>
+		<!--================ End footer Area  =================-->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="/www/js/jquery-3.2.1.min.js"></script>
+        <script src="/www/js/popper.js"></script>
+        <script src="/www/js/bootstrap.min.js"></script>
+        <script src="/www/js/stellar.js"></script>
+        <script src="/www/vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="/www/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="/www/vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="/www/vendors/isotope/isotope-min.js"></script>
+        <script src="/www/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="/www/vendors/jquery-ui/jquery-ui.js"></script>
+        <script src="/www/js/jquery.ajaxchimp.min.js"></script>
+        <script src="/www/js/mail-script.js"></script>
+        <script src="/www/js/theme.js"></script>
+    </body>
+</html>

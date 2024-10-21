@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册页面</title>
+    <!-- 引入Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.staticfile.net/twitter-bootstrap/5.1.1/css/bootstrap.min.css"
+    />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <h5 class="card-header">注册</h5>
+                    <div class="card-body">
+                        <form action="http://localhost:3000/user/register/submit" method="post">
+                            <div class="mb-3">
+                                <label for="userName" class="form-label">用户名</label>
+                                <input type="text" class="form-control" id="userName" name="userName" placeholder="请输入用户名">
+                            </div>
+                            <div class="mb-3">
+                                <label for="nickName" class="form-label">昵称</label>
+                                <input type="text" class="form-control" id="nickName" name="nickName" placeholder="请输入昵称">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">密码</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password-confirm" class="form-label">确认密码</label>
+                                <input type="password" class="form-control" id="password-confirm" name="passwordAgain" placeholder="请再次输入密码">
+                            </div>
+                            <button type="submit" class="btn btn-primary">注册</button>
+                            <a type="submit" class="btn btn-link" href="/user/login/view">去登录</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
